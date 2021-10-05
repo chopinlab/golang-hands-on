@@ -1,0 +1,20 @@
+### VisualStudioCode ###
+.vscode/*
+
+### Jetbrains ###
+.idea/*
+
+### Go ###
+*.exe
+*.exe~
+
+### custom ###
+config/*
+
+### sonarqube ###
+cov.out
+report.json
+.scannerwork
+
+### swagger ###
+docs
