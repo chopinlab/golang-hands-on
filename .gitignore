@@ -3,6 +3,7 @@
 
 ### Jetbrains ###
 .idea/*
+golang-hands-on.iml
 
 ### Go ###
 *.exe

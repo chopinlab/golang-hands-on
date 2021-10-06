@@ -1,0 +1,118 @@
+fullnameOverride: golang-hands-on
+
+replicaCount: 1
+
+profile: default
+
+namespace: development
+
+image:
+  repository: docker-registry.127.0.0.1.nip.io:30500/golang-hands-on
+  tag: latest
+  pullPolicy: Always
+
+labels: {}
+annotations: {}
+
+pod:
+  labels: {}
+  annotations: {}
+
+pdb: {}
+
+service:
+  type: ClusterIP
+  web:
+    externalPort: 80
+    internalPort: 3000
+  grpc:
+    externalPort: 3001
+    internalPort: 3001
+  annotations: {}
+  labels: {}
+
+ingress:
+  enabled: true
+  subdomain: golang-hands-on
+  basedomain: 127.0.0.1.nip.io
+  hosts: {}
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    # https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/nginx-configuration/annotations.md
+    # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: 8m
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "180"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "180"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "180"
+    # ingress.kubernetes.io/whitelist-source-range: 0.0.0.0/0
+  labels: {}
+
+autoscaling:
+  enabled: false
+  min: 1
+  max: 5
+  cpu: 80
+  mem: 80
+
+#resources:
+#  requests:
+#    cpu: 200m
+#    memory: 512Mi
+#  limits:
+#    cpu: 220mz
+#    memory: 512Mi
+
+#readinessProbe:
+#  httpGet:
+#    path: /api/v1/health
+#    port: 3000
+#  initialDelaySeconds: 10
+#  periodSeconds: 5
+#  failureThreshold: 60
+
+#livenessProbe:
+#  httpGet:
+#    path: /api/v1/health
+#    port: 3000
+#  initialDelaySeconds: 10
+#  periodSeconds: 5
+#  failureThreshold: 60
+
+
+# livenessProbe:
+#   exec:
+#     command:
+#     - cat
+#     - /tmp/healthy
+#   initialDelaySeconds: 3
+#   periodSeconds: 10
+# livenessProbe:
+#   tcpSocket:
+#     port: 80
+#   initialDelaySeconds: 3
+#   periodSeconds: 10
+
+# hostNetwork: true
+# dnsPolicy: Default
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+env: []
+
+dockerRegistrySecret: regcred
+
+configmap:
+  enabled: false
+  data: {}
+  # MESSAGE: "hello world"
+
+secret:
+  enabled: false
+  #enabled: false
+  # data: {}
+  # SECRET: "c2VjcmV0IHdvcmxkCg=="
