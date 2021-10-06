@@ -2,27 +2,28 @@ package main
 
 import (
 	"fmt"
-	/*"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	echoSwagger "github.com/swaggo/echo-swagger"
 	"golang-hands-on/docs"
 	"golang-hands-on/models"
+	"golang.org/x/sync/errgroup"
 	"log"
 	"net"
 	"net/http"
-	"time"*/
+	"time"
 )
 
 func main() {
 
 	fmt.Println("hello world")
 
-	/*g := errgroup.Group{}
+	g := errgroup.Group{}
 	g.Go(func() error { return serveEcho() })
-	g.Wait()*/
+	g.Wait()
 }
 
-/*func serveEcho() (err error) {
+func serveEcho() (err error) {
 
 	e := echo.New()
 	e.Use(middleware.Logger())
@@ -48,9 +49,9 @@ func main() {
 	e.Listener = listener
 	e.Logger.Fatal(e.StartServer(e.Server))
 	return
-}*/
+}
 
-/*func LoadSwaggerConfig() error {
+func LoadSwaggerConfig() error {
 
 	docs.SwaggerInfo.Title = "golang-hands-on"
 	docs.SwaggerInfo.Version = "v1"
@@ -59,7 +60,7 @@ func main() {
 	docs.SwaggerInfo.Schemes = []string{"http"}
 	docs.SwaggerInfo.Description = "golang-hands-on"
 	return nil
-}*/
+}
 
 // GetHealthCheck
 // @Tags Health
@@ -69,11 +70,11 @@ func main() {
 // @Produce json
 // @Success 200 {object} models.SuccessHealthResponse
 // @Router /health [get]
-/*func GetHealthCheck() echo.HandlerFunc {
+func GetHealthCheck() echo.HandlerFunc {
 	return func(c echo.Context) (err error) {
 		return c.JSON(http.StatusOK, models.SuccessHealthResponse{Message: "OK"})
 	}
-}*/
+}
 
 // GetCloudAccount
 // @Tags Cloud Account
@@ -86,7 +87,7 @@ func main() {
 // @Failure 400 {object} models.ErrorBadRequestResponse
 // @Failure 404 {object} models.ErrorNotFoundResponse
 // @Router /cloudAccounts/{cloudAccountId} [get]
-/*func GetCloudAccount() echo.HandlerFunc {
+func GetCloudAccount() echo.HandlerFunc {
 	return func(c echo.Context) (err error) {
 
 		cloudAccountId := c.Param("cloudAccountId")
@@ -107,4 +108,4 @@ func main() {
 		}
 		return c.JSON(http.StatusOK, mockUpData)
 	}
-}*/
+}
